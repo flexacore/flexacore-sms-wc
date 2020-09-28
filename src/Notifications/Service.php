@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @package WooCommerce Notifications via Africa's Talking
+ * @link https://osen.co.ke
+ * @version 0.20.60
+ * @since 0.20.40
+ * @author Osen Concepts < hi@osen.co.ke >
+ */
+
 namespace Osen\Notify\Notifications;
 
 use AfricasTalking\SDK\AfricasTalking;

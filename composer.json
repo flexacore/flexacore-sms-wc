@@ -1,5 +1,5 @@
 {
-    "name": "osenco/mpesa",
+    "name": "osenco/wp-settings",
     "description": "Intuitive Mpesa SDK for PHP Apps. Just Plug 'N Play",
     "type": "library",
     "license": "MIT",

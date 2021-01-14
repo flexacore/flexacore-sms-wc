@@ -44,8 +44,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-register_activation_hook(__FILE__, function ()
-{
+register_activation_hook(__FILE__, function () {
     if (!is_plugin_active('woocommerce/woocommerce.php')) {
         deactivate_plugins(plugin_basename(__FILE__));
 
@@ -67,24 +66,42 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links)
     );
 });
 
-add_filter('plugin_row_meta', function ($links, $file)
-{
-	$plugin = plugin_basename(__FILE__);
+add_filter('plugin_row_meta', function ($links, $file) {
+    $plugin = plugin_basename(__FILE__);
 
-	if ($plugin == $file) {
-		$row_meta = array(
-			'github'    => '<a href="' . esc_url('https://github.com/osenco/osen-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
-			'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Africa\'s Talking', 'woocommerce') . '">' . esc_html__('Africa\'s Talking', 'woocommerce') . '</a>'
-		);
+    if ($plugin == $file) {
+        $row_meta = array(
+            'github'    => '<a href="' . esc_url('https://github.com/osenco/osen-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
+            'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Africa\'s Talking', 'woocommerce') . '">' . esc_html__('Africa\'s Talking', 'woocommerce') . '</a>'
+        );
 
-		return array_merge($links, $row_meta);
-	}
+        return array_merge($links, $row_meta);
+    }
 
-	return (array) $links;
+    return (array) $links;
 }, 10, 2);
+
+function enqueue_select2_jquery()
+{
+    wp_register_style('select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all');
+    wp_register_script('select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array('jquery'), '1.0', true);
+    wp_enqueue_style('select2css');
+    wp_enqueue_script('select2');
+}
+add_action('admin_enqueue_scripts', 'enqueue_select2_jquery');
+
+add_action('admin_footer', function () { ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $('.option-tree-ui-select').select2();
+        });
+    </script>
+<?php
+});
 
 // initialize plugin
 use Osen\Notify\Notifications\Alert;
+use Osen\Notify\Settings\Send;
 use Osen\Notify\Settings\Admin;
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
@@ -92,6 +109,7 @@ require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 add_action('plugins_loaded', function () {
     // Load admin settings
     new Admin;
+    new Send;
 });
 
 add_action('init', function () {

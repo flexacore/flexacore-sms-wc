@@ -16,7 +16,7 @@ class Admin
     private $settings;
 
     private $statuses = [
-        'created', 'pending', 'failed', 'on-hold', 'processing', 'completed', 'refunded', 'cancelled',
+        'created', 'pending', 'failed', 'on-hold', 'processing', 'transporting', 'completed', 'refunded', 'cancelled',
     ];
 
     public function __construct()

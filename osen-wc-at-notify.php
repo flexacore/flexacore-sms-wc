@@ -3,14 +3,14 @@
 /**
  * @package WooCommerce Notifications via Africa's Talking
  * @link https://osen.co.ke
- * @version 0.20.60
+ * @version 1.20.1
  * @since 0.20.40
  * @author Osen Concepts < hi@osen.co.ke >
  * 
  * Plugin Name: WooCommerce SMS Notifications
  * Plugin URI: https://osen.co.ke
- * Description: Notify your customers via Africa's Talking SMS when WooCommerce order status changes
- * Version: 0.20.40
+ * Description: Notify your customers via Africa's Talking SMS when WooCommerce order status changes or after registration.
+ * Version: 1.20.1
  * Author: Osen Concepts
  * Author URI: https://osen.co.ke
  *

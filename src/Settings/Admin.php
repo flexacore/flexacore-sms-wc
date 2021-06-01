@@ -16,7 +16,15 @@ class Admin
     private $settings;
 
     private $statuses = [
-        'created', 'pending', 'failed', 'on-hold', 'processing', 'transporting', 'completed', 'refunded', 'cancelled',
+        'created'      => 'Created',
+        'pending'      => 'Pending',
+        'failed'       => 'Failed',
+        'on-hold'      => 'On Hold',
+        'processing'   => 'Processing',
+        'transporting' => 'Transporting',
+        'completed'    => 'Completed',
+        'refunded'     => 'Refunded',
+        'cancelled'    => 'Cancelled',
     ];
 
     public function __construct()
@@ -29,7 +37,6 @@ class Admin
 
     public function admin_init()
     {
-
         //set the settings
         $this->settings->set_sections($this->get_settings_sections());
         $this->settings->set_fields($this->get_settings_fields());
@@ -57,15 +64,22 @@ class Admin
                 'id'      => 'gateway',
                 'title'   => __('Admin Options', 'woocommerce'),
                 'heading' => __('Admin Options', 'woocommerce'),
-                'desc'    => 'You can use placeholders such as <code>{first_name}</code>, <code>{last_name}</code>, <code>{order}</code>, <code>{site}</code>, <code>{phone}</code> to show customer names, order number, website name and customer phone respectively.'
+                'desc'    => 'Setup your Africa\'s talking configuration here.',
+            ),
+            array(
+                'id'      => 'registration',
+                'title'   => __('Customer Registration', 'woocommerce'),
+                'heading' => __('On Customer Registration', 'woocommerce'),
+                'desc'    => 'You can use placeholders such as <code>{first_name}</code>, <code>{last_name}</code>, <code>{site}</code>, <code>{phone}</code> to show customer names, website name and customer phone respectively.',
             ),
         );
-        foreach ($this->statuses as $status) {
+
+        foreach ($this->statuses as $key => $status) {
             $sections[] = array(
-                'id'      => $status,
+                'id'      => $key,
                 'title'   => ucwords($status),
                 'heading' => 'On ' . ucwords($status) . ' Status',
-                'desc'    => 'You can use placeholders such as <code>{first_name}</code>, <code>{last_name}</code>, <code>{order}</code>, <code>{site}</code>, <code>{phone}</code> to show customer names, order number, website name and customer phone respectively.'
+                'desc'    => 'You can use placeholders such as <code>{first_name}</code>, <code>{last_name}</code>, <code>{order}</code>, <code>{site}</code>, <code>{phone}</code> to show customer names, order number, website name and customer phone respectively.',
             );
         }
 
@@ -80,7 +94,7 @@ class Admin
     public function get_settings_fields()
     {
         $settings_fields = array(
-            'gateway' => array(
+            'gateway'      => array(
                 array(
                     'name'              => 'username',
                     'label'             => __('AT Username', 'woocommerce'),
@@ -104,39 +118,76 @@ class Admin
                 ),
                 array(
                     'name'        => 'phones',
-                    'label'       => __('Admin Numbers', 'woocommerce'),
-                    'desc'        => __('Comma-separated list of numbers to notify on status change', 'woocommerce'),
+                    'label'       => __('Admin Contacts', 'woocommerce'),
+                    'desc'        => __('Comma-separated list of phone numbers to notify on status change', 'woocommerce'),
                     'type'        => 'textarea',
                     'placeholder' => 'E.g 254...,255...,256..',
                 ),
+                // array(
+                //     'name'    => 'statuses',
+                //     'label'   => __('Enabled Statuses', 'woocommerce'),
+                //     'desc'    => __('Select which statuses to show.'.print_r($this->get_option('statuses')), 'woocommerce'),
+                //     'type'    => 'multicheck',
+                //     'options' => $this->statuses,
+                // ),
             ),
-        );
 
-        foreach ($this->statuses as $status) {
-            $settings_fields[$status] = array(
+            'registration' => array(
                 array(
                     'name'  => 'customer_enable',
                     'label' => __('Customer Enable', 'woocommerce'),
-                    'desc'  => __('Notify customer on ' . $status . ' status', 'woocommerce'),
+                    'desc'  => __('Notify customer on registration', 'woocommerce'),
                     'type'  => 'checkbox',
                 ),
                 array(
                     'name'    => 'customer_msg',
                     'label'   => __('Customer Message', 'woocommerce'),
-                    'desc'    => __('Message to send to customer for ' . $status . ' status', 'woocommerce'),
+                    'desc'    => __('Message to send to customer on registration', 'woocommerce'),
+                    'type'    => 'textarea',
+                    'default' => 'Hello {first_name}, thank you for registering on {site}.',
+                ),
+                array(
+                    'name'  => 'admin_enable',
+                    'label' => __('Admin Enable', 'woocommerce'),
+                    'desc'  => __('Notify admin(s) on registration', 'woocommerce'),
+                    'type'  => 'checkbox',
+                ),
+                array(
+                    'name'    => 'admin_msg',
+                    'label'   => __('Admin Message', 'woocommerce'),
+                    'desc'    => __('Message to send to admin(s) on customer registration', 'woocommerce'),
+                    'type'    => 'textarea',
+                    'rows'    => 2,
+                    'default' => 'A new customer has just registered on {site}.',
+                ),
+            ),
+        );
+
+        foreach ($this->statuses as $key => $status) {
+            $settings_fields[$key] = array(
+                array(
+                    'name'  => 'customer_enable',
+                    'label' => __('Customer Enable', 'woocommerce'),
+                    'desc'  => __('Notify customer when order is '.$status, 'woocommerce'),
+                    'type'  => 'checkbox',
+                ),
+                array(
+                    'name'    => 'customer_msg',
+                    'label'   => __('Customer Message', 'woocommerce'),
+                    'desc'    => __('Message to send to customer when order is '.$status, 'woocommerce'),
                     'type'    => 'textarea',
                     'default' => 'Hello {first_name}, your order on {site} is ' . $status . '.',
                 ),
                 array(
                     'name'  => 'admin_enable',
                     'label' => __('Admin Enable', 'woocommerce'),
-                    'desc'  => __('Notify admin(s) on ' . $status . ' status', 'woocommerce'),
+                    'desc'  => __('Notify admin(s) when order is '.$status, 'woocommerce'),
                     'type'  => 'checkbox',
                 ),
                 array(
                     'name'    => 'admin_msg',
                     'label'   => __('Admin Message', 'woocommerce'),
-                    'desc'    => __('Message to send to admin(s) for ' . $status . ' status', 'woocommerce'),
+                    'desc'    => __('Message to send to admin(s) when order is '.$status, 'woocommerce'),
                     'type'    => 'textarea',
                     'rows'    => 2,
                     'default' => 'An order is ' . $status . ' on {site}.',

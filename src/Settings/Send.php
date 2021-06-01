@@ -85,7 +85,8 @@ class Send extends Service
         $unpaid_orders = (array) wc_get_orders(array(
             'limit'        => -1
         ));
-        foreach ($unpaid_orders as $order) { // Looping all orders to fetch customer IDs
+
+        foreach ($unpaid_orders as $order) {
             $customers[$order->get_billing_phone()] = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
         }
     ?>
@@ -102,8 +103,7 @@ class Send extends Service
     }
 
     public function at_bulk_fields_at_bulk_sms_username_cb($args)
-    {
-    ?>
+    { ?>
         <textarea id="<?php echo esc_attr($args['label_for']); ?>" data-custom="<?php echo esc_attr($args['at_bulk_custom_data']); ?>" name="<?php echo esc_attr($args['label_for']); ?>" class="regular-text" required></textarea>
         <p class="description">
             <?php esc_html_e('Message Content to send.', 'at_bulk'); ?>
@@ -155,14 +155,14 @@ class Send extends Service
                                     );
                                 } else {
                                     $('#wpbody-content .wrap h1').after(
-                                        '<div class="error settings-error notice is-dismissible"><p>'+data['data']+'.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>'
+                                        '<div class="error settings-error notice is-dismissible"><p>' + data['data'] + '.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>'
                                     );
                                 }
                             } else {
-                                    $('#wpbody-content .wrap h1').after(
-                                        '<div class="error settings-error notice is-dismissible"><p>An Error Occured.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>'
-                                    );
-                                }
+                                $('#wpbody-content .wrap h1').after(
+                                    '<div class="error settings-error notice is-dismissible"><p>An Error Occured.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>'
+                                );
+                            }
                         }, 'json');
                     });
                 });
@@ -204,23 +204,19 @@ class Send extends Service
 
     public function process_at_bulk_form()
     {
-        $message     = trim($_POST['message']);
-
         if (!isset($_POST['at_bulk_form_nonce']) || !wp_verify_nonce($_POST['at_bulk_form_nonce'], 'process_at_bulk_form')) {
             exit(wp_send_json(['errorCode' => 'The form is not valid']));
         }
 
-        if ($_POST['phone']) {
-            $phone       = trim($_POST['phone']);
-        } else {
-            $phone = null;
-        }
+        $message     = trim($_POST['message']);
+        $phone       = $_POST['phone'] ? trim($_POST['phone']) : null;
 
         if ($phone == 'all' || is_null($phone)) {
             $phones = [];
-            $orders = (array) wc_get_orders(array(
+            $orders = wc_get_orders(array(
                 'limit'        => -1
             ));
+
             foreach ($orders as $order) {
                 $PhoneNumber = str_replace("+", "", $order->get_billing_phone());
                 $PhoneNumber = preg_replace('/^0/', '254', $PhoneNumber);

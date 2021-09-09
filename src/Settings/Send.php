@@ -90,7 +90,7 @@ class Send extends Service
             $customers[$order->get_billing_phone()] = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
         }
     ?>
-        <select id="<?php echo esc_attr($args['label_for']); ?>" data-custom="<?php echo esc_attr($args['at_bulk_custom_data']); ?>" name="<?php echo esc_attr($args['label_for']); ?>" class="regular-text option-tree-ui-select" multiple>
+        <select id="<?php echo esc_attr($args['label_for']); ?>" data-custom="<?php echo esc_attr($args['at_bulk_custom_data']); ?>" name="<?php echo esc_attr($args['label_for']); ?>" class="regular-text option-tree-ui-select wc-enhanced-select" multiple>
             <option value="all">Send To All</option>
             <?php foreach ($customers as $phone => $customer) : ?>
                 <option value="<?php echo $phone; ?>"><?php echo $customer; ?></option>

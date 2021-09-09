@@ -109,13 +109,13 @@ class Alert extends Service
         return $this->notify($order_id, true);
     }
 
-    public function notify($order_id, $new = false, $to = 'pending', $from = 'created')
+    public function notify($order_id, $new = false)
     {
         $order  = new \WC_Order($order_id);
         $phone  = $order->get_billing_phone();
         $status = $new ? 'created' : $order->status;
 
-        if ($this->get_option("customer_enable", $status) == 'on') {
+        if ($this->get_option("customer_enable", "{wc-}$status") == 'on') {
             $customer_message = $this->get_option("customer_msg", $status);
             $customer_message = $this->parse($order, $customer_message);
 
@@ -130,7 +130,7 @@ class Alert extends Service
             }
         }
 
-        if ($this->get_option("admin_enable", $status) == 'on') {
+        if ($this->get_option("admin_enable", "{wc-}$status") == 'on') {
             $admin_message = $this->get_option("admin_msg", $status);
             $admin_message = $this->parse($order, $admin_message);
             $phone         = $this->get_option('phones');

@@ -15,21 +15,13 @@ class Admin
 
     private $settings;
 
-    private $statuses = [
-        'created'      => 'Created',
-        'pending'      => 'Pending',
-        'failed'       => 'Failed',
-        'on-hold'      => 'On Hold',
-        'processing'   => 'Processing',
-        'transporting' => 'Transporting',
-        'completed'    => 'Completed',
-        'refunded'     => 'Refunded',
-        'cancelled'    => 'Cancelled',
-    ];
+    private $statuses = [];
 
     public function __construct()
     {
         $this->settings = new Base;
+
+        $this->statuses = \array_merge(['created' => 'Created'], wc_get_order_statuses());
 
         add_action('admin_init', array($this, 'admin_init'));
         add_action('admin_menu', array($this, 'admin_menu'), 99);
@@ -68,7 +60,7 @@ class Admin
             ),
             array(
                 'id'      => 'registration',
-                'title'   => __('Customer Registration', 'woocommerce'),
+                'title'   => __('Registration', 'woocommerce'),
                 'heading' => __('On Customer Registration', 'woocommerce'),
                 'desc'    => 'You can use placeholders such as <code>{first_name}</code>, <code>{last_name}</code>, <code>{site}</code>, <code>{phone}</code> to show customer names, website name and customer phone respectively.',
             ),
@@ -168,29 +160,29 @@ class Admin
                 array(
                     'name'  => 'customer_enable',
                     'label' => __('Customer Enable', 'woocommerce'),
-                    'desc'  => __('Notify customer when order is '.$status, 'woocommerce'),
+                    'desc'  => __('Notify customer when order is ' . \strtolower($status), 'woocommerce'),
                     'type'  => 'checkbox',
                 ),
                 array(
                     'name'    => 'customer_msg',
                     'label'   => __('Customer Message', 'woocommerce'),
-                    'desc'    => __('Message to send to customer when order is '.$status, 'woocommerce'),
+                    'desc'    => __('Message to send to customer when order status is ' . \strtolower($status), 'woocommerce'),
                     'type'    => 'textarea',
-                    'default' => 'Hello {first_name}, your order on {site} is ' . $status . '.',
+                    'default' => 'Hello {first_name}, the status of your order on {site} is ' . \strtolower($status) . '.',
                 ),
                 array(
                     'name'  => 'admin_enable',
                     'label' => __('Admin Enable', 'woocommerce'),
-                    'desc'  => __('Notify admin(s) when order is '.$status, 'woocommerce'),
+                    'desc'  => __('Notify admin(s) when order is ' . \strtolower($status), 'woocommerce'),
                     'type'  => 'checkbox',
                 ),
                 array(
                     'name'    => 'admin_msg',
                     'label'   => __('Admin Message', 'woocommerce'),
-                    'desc'    => __('Message to send to admin(s) when order is '.$status, 'woocommerce'),
+                    'desc'    => __('Message to send to admin(s) when order status is ' . \strtolower($status), 'woocommerce'),
                     'type'    => 'textarea',
                     'rows'    => 2,
-                    'default' => 'An order is ' . $status . ' on {site}.',
+                    'default' => 'An order on {site} has ' . \strtolower($status) . ' status.',
                 ),
             );
         }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package WooCommerce Notifications via Africa's Talking
+ * @package WooCommerce Notifications via Flexacore
  * @link https://osen.co.ke
  * @version 0.20.60
  * @since 0.20.40
@@ -41,10 +41,10 @@ class Admin
     {
         add_submenu_page(
             'woocommerce',
-            'SMS Notifications Via Africa\'s Talking',
+            'SMS Notifications Via Flexacore',
             'SMS Notifications',
             'manage_options',
-            'at_notify',
+            'flexacore',
             array($this, 'settings_page')
         );
     }
@@ -56,7 +56,7 @@ class Admin
                 'id'      => 'gateway',
                 'title'   => __('Admin Options', 'woocommerce'),
                 'heading' => __('Admin Options', 'woocommerce'),
-                'desc'    => 'Setup your Africa\'s talking configuration here.',
+                'desc'    => 'Setup your Flexacore configuration here.',
             ),
             array(
                 'id'      => 'registration',
@@ -88,24 +88,17 @@ class Admin
         $settings_fields = array(
             'gateway'      => array(
                 array(
-                    'name'              => 'username',
-                    'label'             => __('AT Username', 'woocommerce'),
-                    'type'              => 'text',
-                    'placeholder'       => 'Your Africa\'s Talking API Username',
-                    'sanitize_callback' => 'sanitize_text_field',
-                ),
-                array(
                     'name'              => 'shortcode',
-                    'label'             => __('AT Sender ID', 'woocommerce'),
+                    'label'             => __('Flexacore Sender ID', 'woocommerce'),
                     'type'              => 'text',
-                    'placeholder'       => 'Your Africa\'s Talking Sender ID',
+                    'placeholder'       => 'Your Flexacore Sender ID',
                     'sanitize_callback' => 'sanitize_text_field',
                 ),
                 array(
                     'name'              => 'key',
-                    'label'             => __('AT API Key', 'woocommerce'),
+                    'label'             => __('Flexacore API Key', 'woocommerce'),
                     'type'              => 'text',
-                    'placeholder'       => 'Your Africa\'s Talking API Key',
+                    'placeholder'       => 'Your Flexacore API Key',
                     'sanitize_callback' => 'sanitize_text_field',
                 ),
                 array(

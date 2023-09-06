@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @package WooCommerce Notifications via Africa's Talking
+ * @package WooCommerce Notifications via Flexacore
  * @link https://osen.co.ke
  * @version 1.20.1
  * @since 0.20.40
  * @author Osen Concepts < hi@osen.co.ke >
  * 
- * Plugin Name: WooCommerce SMS Notifications
+ * Plugin Name: Flexacore WooCommerce SMS Notifications
  * Plugin URI: https://osen.co.ke
- * Description: Notify your customers via Africa's Talking SMS when WooCommerce order status changes or after registration.
+ * Description: Notify your customers via Flexacore SMS when WooCommerce order status changes or after registration.
  * Version: 1.20.1
  * Author: Osen Concepts
  * Author URI: https://osen.co.ke
@@ -61,7 +61,7 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links)
     return array_merge(
         $links,
         array(
-            '<a href="' . admin_url('admin.php?page=at_notify') . '">&nbsp;Configure</a>',
+            '<a href="' . admin_url('admin.php?page=flexacore') . '">&nbsp;Configure</a>',
         )
     );
 });
@@ -72,7 +72,7 @@ add_filter('plugin_row_meta', function ($links, $file) {
     if ($plugin == $file) {
         $row_meta = array(
             'github'    => '<a href="' . esc_url('https://github.com/osenco/osen-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
-            'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Africa\'s Talking', 'woocommerce') . '">' . esc_html__('Africa\'s Talking', 'woocommerce') . '</a>'
+            'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Flexacore', 'woocommerce') . '">' . esc_html__('Flexacore', 'woocommerce') . '</a>'
         );
 
         return array_merge($links, $row_meta);

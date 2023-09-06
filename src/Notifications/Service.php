@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package WooCommerce Notifications via Africa's Talking
+ * @package WooCommerce Notifications via Flexacore
  * @link https://osen.co.ke
  * @version 0.20.60
  * @since 0.20.40
@@ -55,16 +55,32 @@ class Service
         $phones = array();
         if (strpos(',', $receipients) !== false) {
             $phones = explode(',', $receipients);
-        } else {
+        } elseif (is_array($receipients)) {
             $phones = $receipients;
+        } else {
+            $phones = [$receipients];
         }
 
-        $AT  = new AfricasTalking($this->get_option('username'), $this->get_option('key'));
-        $sms = $AT->sms();
-        return $sms->send([
-            'to'      => $phones,
-            'message' => $message,
-            'from'    => $this->get_option('shortcode'),
+        $res = wp_remote_post('https://one.flexacore.com/api/v3/sms/send', [
+            'headers' => [
+                'Accept'        => 'application/json',
+                'Content-Type'  => 'application/json',
+                'Authorization' => 'Bearer ' . $this->get_option('key'),
+            ],
+            'body'    => wp_json_encode([
+                'recipient' => implode(',', $phones),
+                'sender_id' => $this->get_option('shortcode'),
+                'type'      => 'plain',
+                'message'   => $message
+            ])
         ]);
+
+        if (is_wp_error($res)) {
+            return $res->get_error_message();
+        }
+
+        $res = json_decode($res['body'], true);
+
+        return $res;
     }
 }

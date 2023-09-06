@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package WooCommerce Notifications via Africa's Talking
+ * @package WooCommerce Notifications via Flexacore
  * @subpackage Main alert class
  * @link https://osen.co.ke
  * @version 0.20.60

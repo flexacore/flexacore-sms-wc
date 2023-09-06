@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package WooCommerce Notifications via Africa's Talking
+ * @package WooCommerce Notifications via Flexacore
  * @link https://osen.co.ke
  * @version 0.20.60
  * @since 0.20.40
@@ -19,6 +19,8 @@ class Base
      * @var array
      */
     protected $sections = array();
+
+    protected $settings_sections = array();
 
     /**
      * Settings fields array
@@ -152,7 +154,6 @@ class Base
                     'step'              => isset($option['step']) ? $option['step'] : '',
                     'cols'              => isset($option['cols']) ? $option['cols'] : '',
                     'rows'              => isset($option['rows']) ? $option['rows'] : '',
-                    'class'             => isset($option['class']) ? $option['class'] : '',
                 );
 
                 add_settings_field("{$section}[{$name}]", $label, $callback, $section, $section, $args);

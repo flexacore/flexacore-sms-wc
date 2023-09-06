@@ -1,21 +1,21 @@
 {
-    "name": "osenco/wp-settings",
+    "name": "flexacoreco/wp-settings",
     "description": "Intuitive Mpesa SDK for PHP Apps. Just Plug 'N Play",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Osen Concepts",
-            "email": "hi@osen.co.ke"
+            "name": "Flexacore Concepts",
+            "email": "hi@flexacore.co.ke"
         }
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.4"
     },
     "autoload": {
         "psr-4": {
-            "Osen\\Notify\\": "src/"
+            "Flexacore\\Notify\\": "src/"
         }
     }
 }

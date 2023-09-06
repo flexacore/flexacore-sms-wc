@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Osen\\Notify\\' => array($baseDir . '/src'),
+    'Flexacore\\Notify\\' => array($baseDir . '/src'),
 );

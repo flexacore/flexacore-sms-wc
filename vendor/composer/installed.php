@@ -1,6 +1,6 @@
 <?php return array(
     'root' => array(
-        'name' => 'osenco/wp-settings',
+        'name' => 'flexacoreco/wp-settings',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
         'reference' => '0230034635db41a514847bea31bd5cb287a2fc9a',
@@ -10,7 +10,7 @@
         'dev' => true,
     ),
     'versions' => array(
-        'osenco/wp-settings' => array(
+        'flexacoreco/wp-settings' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
             'reference' => '0230034635db41a514847bea31bd5cb287a2fc9a',

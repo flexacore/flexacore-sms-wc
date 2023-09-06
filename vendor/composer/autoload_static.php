@@ -9,12 +9,12 @@ class ComposerStaticInit4f27f49cb62939f78fe546a2498763b1
     public static $prefixLengthsPsr4 = array (
         'O' => 
         array (
-            'Osen\\Notify\\' => 12,
+            'Flexacore\\Notify\\' => 12,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Osen\\Notify\\' => 
+        'Flexacore\\Notify\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

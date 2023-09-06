@@ -1,2 +1,2 @@
-# osen-wc-at-notify
+# flexacore-wc-at-notify
 Notify your customers when WooCommerce order status changes

@@ -2,17 +2,17 @@
 
 /**
  * @package WooCommerce Notifications via Flexacore
- * @link https://osen.co.ke
+ * @link https://flexacore.co.ke
  * @version 1.20.1
  * @since 0.20.40
- * @author Osen Concepts < hi@osen.co.ke >
+ * @author Flexacore Concepts < hi@flexacore.co.ke >
  * 
  * Plugin Name: Flexacore WooCommerce SMS Notifications
- * Plugin URI: https://osen.co.ke
+ * Plugin URI: https://flexacore.co.ke
  * Description: Notify your customers via Flexacore SMS when WooCommerce order status changes or after registration.
  * Version: 1.20.1
- * Author: Osen Concepts
- * Author URI: https://osen.co.ke
+ * Author: Flexacore Concepts
+ * Author URI: https://flexacore.co.ke
  *
  * Requires at least: 4.6
  * Tested up to: 5.4
@@ -23,7 +23,7 @@
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
- * Copyright 2020  Osen Concepts 
+ * Copyright 2020  Flexacore Concepts 
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3, as
@@ -71,7 +71,7 @@ add_filter('plugin_row_meta', function ($links, $file) {
 
     if ($plugin == $file) {
         $row_meta = array(
-            'github'    => '<a href="' . esc_url('https://github.com/osenco/osen-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
+            'github'    => '<a href="' . esc_url('https://github.com/flexacoreco/flexacore-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
             'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Flexacore', 'woocommerce') . '">' . esc_html__('Flexacore', 'woocommerce') . '</a>'
         );
 
@@ -100,9 +100,9 @@ add_action('admin_footer', function () { ?>
 });
 
 // initialize plugin
-use Osen\Notify\Notifications\Alert;
-use Osen\Notify\Settings\Send;
-use Osen\Notify\Settings\Admin;
+use Flexacore\Notify\Notifications\Alert;
+use Flexacore\Notify\Settings\Send;
+use Flexacore\Notify\Settings\Admin;
 
 require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 

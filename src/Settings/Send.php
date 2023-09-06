@@ -2,15 +2,15 @@
 
 /**
  * @package WooCommerce Notifications via Flexacore
- * @link https://osen.co.ke
+ * @link https://flexacore.co.ke
  * @version 0.20.60
  * @since 0.20.40
- * @author Osen Concepts < hi@osen.co.ke >
+ * @author Flexacore Concepts < hi@flexacore.co.ke >
  */
 
-namespace Osen\Notify\Settings;
+namespace Flexacore\Notify\Settings;
 
-use Osen\Notify\Notifications\Service;
+use Flexacore\Notify\Notifications\Service;
 
 class Send extends Service
 {

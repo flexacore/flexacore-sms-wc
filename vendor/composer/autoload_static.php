@@ -7,9 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit4f27f49cb62939f78fe546a2498763b1
 {
     public static $prefixLengthsPsr4 = array (
-        'O' => 
+        'F' => 
         array (
-            'Flexacore\\Notify\\' => 12,
+            'Flexacore\\Notify\\' => 17,
         ),
     );
 
@@ -22,6 +22,11 @@ class ComposerStaticInit4f27f49cb62939f78fe546a2498763b1
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Flexacore\\Notify\\Notifications\\Alert' => __DIR__ . '/../..' . '/src/Notifications/Alert.php',
+        'Flexacore\\Notify\\Notifications\\Service' => __DIR__ . '/../..' . '/src/Notifications/Service.php',
+        'Flexacore\\Notify\\Settings\\Admin' => __DIR__ . '/../..' . '/src/Settings/Admin.php',
+        'Flexacore\\Notify\\Settings\\Base' => __DIR__ . '/../..' . '/src/Settings/Base.php',
+        'Flexacore\\Notify\\Settings\\Send' => __DIR__ . '/../..' . '/src/Settings/Send.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

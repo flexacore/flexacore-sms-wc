@@ -5,7 +5,7 @@
  * @link https://www.flexacore.com
  * @version 1.20.2
  * @since 0.20.40
- * @author Flexacore < hello@flexacore.co.ke >
+ * @author Flexacore < hello@flexacore.com >
  * 
  * Plugin Name: Flexacore WooCommerce SMS Notifications
  * Plugin URI: https://www.flexacore.com

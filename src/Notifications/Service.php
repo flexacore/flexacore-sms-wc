@@ -5,7 +5,7 @@
  * @link https://www.flexacore.com
  * @version 0.20.60
  * @since 0.20.40
- * @author Flexacore < hello@flexacore.co.ke >
+ * @author Flexacore < hello@flexacore.com >
  */
 
 namespace Flexacore\Notify\Notifications;

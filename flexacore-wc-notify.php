@@ -2,17 +2,17 @@
 
 /**
  * @package WooCommerce Notifications via Flexacore
- * @link https://flexacore.co.ke
- * @version 1.20.1
+ * @link https://www.flexacore.com
+ * @version 1.20.2
  * @since 0.20.40
- * @author Flexacore Concepts < hi@flexacore.co.ke >
+ * @author Flexacore < hello@flexacore.co.ke >
  * 
  * Plugin Name: Flexacore WooCommerce SMS Notifications
- * Plugin URI: https://flexacore.co.ke
+ * Plugin URI: https://www.flexacore.com
  * Description: Notify your customers via Flexacore SMS when WooCommerce order status changes or after registration.
- * Version: 1.20.1
- * Author: Flexacore Concepts
- * Author URI: https://flexacore.co.ke
+ * Version: 1.20.2
+ * Author: Flexacore
+ * Author URI: https://www.flexacore.com
  *
  * Requires at least: 4.6
  * Tested up to: 5.4
@@ -23,7 +23,7 @@
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
- * Copyright 2020  Flexacore Concepts 
+ * Copyright 2023  Flexacore
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3, as
@@ -71,8 +71,8 @@ add_filter('plugin_row_meta', function ($links, $file) {
 
     if ($plugin == $file) {
         $row_meta = array(
-            'github'    => '<a href="' . esc_url('https://github.com/flexacoreco/flexacore-wc-at-notify') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
-            'apidocs' => '<a href="' . esc_url('https://africastalking.com') . '" target="_blank" aria-label="' . esc_attr__('Flexacore', 'woocommerce') . '">' . esc_html__('Flexacore', 'woocommerce') . '</a>'
+            'github'    => '<a href="' . esc_url('https://github.com/flexacore/flexacore-sms-wc') . '" target="_blank" aria-label="' . esc_attr__('Contribute on Github', 'woocommerce') . '">' . esc_html__('Github', 'woocommerce') . '</a>',
+            'apidocs' => '<a href="' . esc_url('https://developers.flexacore.com') . '" target="_blank" aria-label="' . esc_attr__('Flexacore', 'woocommerce') . '">' . esc_html__('Flexacore', 'woocommerce') . '</a>'
         );
 
         return array_merge($links, $row_meta);

@@ -3,10 +3,10 @@
 /**
  * @package WooCommerce Notifications via Flexacore
  * @subpackage Main alert class
- * @link https://flexacore.co.ke
+ * @link https://www.flexacore.com
  * @version 0.20.60
  * @since 0.20.40
- * @author Flexacore Concepts < hi@flexacore.co.ke >
+ * @author Flexacore < hello@flexacore.co.ke >
  */
 
 namespace Flexacore\Notify\Notifications;

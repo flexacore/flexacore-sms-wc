@@ -45,7 +45,7 @@ class Alert extends Service
      * Parse customer message to be sent
      *
      * @param string $message
-     * @param WC_Customer $customer
+     * @param \WC_Customer $customer
      * @return void
      */
     public function parse_customer_msg(string $message, \WC_Customer $customer): string
@@ -71,7 +71,7 @@ class Alert extends Service
     /**
      * Parse message to be sent
      *
-     * @param WC_Order $order
+     * @param \WC_Order $order
      * @param string $message
      * @return void
      */
@@ -109,7 +109,7 @@ class Alert extends Service
         return $this->notify($order_id, true);
     }
 
-    public function notify($order_id, $new = false)
+    public function notify($order_id, $new = false, $to = '', $from = '')
     {
         $order  = new \WC_Order($order_id);
         $phone  = $order->get_billing_phone();

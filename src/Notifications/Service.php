@@ -22,10 +22,10 @@ class Service
 
     public function wallet_balance()
     {
-        $url = ($this->username == 'sandbox')
+        $url = ($this->get_option('username') === 'sandbox')
             ? 'https://sms.flexacore.com/api/v3/balance'
             : 'https://sms.flexacore.com/api/v3/balance';
-        $url = "{$url}?username={$this->username}";
+        $url = "{$url}?username={$this->get_option('username')}";
 
         $response = wp_remote_get(
             $url,
@@ -33,7 +33,7 @@ class Service
                 'headers' => array(
                     'Content-Type' => 'application/json',
                     'Accept'       => 'application/json',
-                    'apiKey'       => $this->key,
+                    'apiKey'       => $this->get_option('key'),
                 ),
             )
         );
